@@ -18,20 +18,20 @@ abstract class BaseMessage(
             from: User?,
             chat: Chat,
             date: Date = Date(),
-            type: TypeMessage,
+            type: String="text",
             payload: Any?,
             isIncoming: Boolean = false
         ): BaseMessage {
             lastId++
             return when (type) {
-                TypeMessage.IMAGE -> ImageMessage(
+                "image" -> ImageMessage(
                     id = "$lastId",
                     from = from,
                     chat = chat,
                     date = date,
                     image = payload as String
                 )
-                TypeMessage.TEXT -> TextMessage(
+                else -> TextMessage(
                     id = "$lastId",
                     from = from,
                     chat = chat,
