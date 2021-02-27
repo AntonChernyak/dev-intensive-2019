@@ -28,10 +28,12 @@ object Utils {
 
     // Получем первые буквы имени и фамилии или null
     fun toInitials(firstName: String?, lastName: String?): String? {
+        val firstNameCheck = firstName?.trim().isNullOrEmpty()
+        val lastNameCheck = lastName?.trim().isNullOrEmpty()
         return when {
-            !firstName.isNullOrEmpty() && !lastName.isNullOrEmpty() -> "${firstName.first().toUpperCase()}${lastName.first().toUpperCase()}"
-            firstName.isNullOrEmpty() && !lastName.isNullOrEmpty() -> lastName.first().toUpperCase().toString()
-            !firstName.isNullOrEmpty() && lastName.isNullOrEmpty() -> firstName.first().toUpperCase().toString()
+            !firstNameCheck && !lastNameCheck -> "${firstName?.first()?.toUpperCase()}${lastName?.first()?.toUpperCase()}"
+            firstNameCheck && !lastNameCheck -> lastName?.first()?.toUpperCase().toString()
+            !firstNameCheck && lastNameCheck -> firstName?.first()?.toUpperCase().toString()
             else -> null
         }
     }
