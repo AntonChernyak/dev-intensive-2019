@@ -29,9 +29,9 @@ object Utils {
     // Получем первые буквы имени и фамилии или null
     fun toInitials(firstName: String?, lastName: String?): String? {
         return when {
-            !firstName.isNullOrEmpty() && !lastName.isNullOrEmpty() -> "${firstName.first()}${lastName.first()}"
-            firstName.isNullOrEmpty() && !lastName.isNullOrEmpty() -> lastName.first().toString()
-            !firstName.isNullOrEmpty() && lastName.isNullOrEmpty() -> firstName.first().toString()
+            !firstName.isNullOrEmpty() && !lastName.isNullOrEmpty() -> "${firstName.first().toUpperCase()}${lastName.first().toUpperCase()}"
+            firstName.isNullOrEmpty() && !lastName.isNullOrEmpty() -> lastName.first().toUpperCase().toString()
+            !firstName.isNullOrEmpty() && lastName.isNullOrEmpty() -> firstName.first().toUpperCase().toString()
             else -> null
         }
     }
