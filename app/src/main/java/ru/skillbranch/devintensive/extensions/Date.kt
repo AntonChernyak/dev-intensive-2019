@@ -83,7 +83,7 @@ enum class TimeUnits {
                     value in 5..20 -> base + "ов"
                     remainder == 1 -> base
                     remainder in 2..4 -> base + "а"
-                    else -> base
+                    else -> base + "ов"
                 }
             }
             DAY -> {
@@ -91,7 +91,7 @@ enum class TimeUnits {
                     value in 5..20 -> "${base}ней"
                     remainder == 1 -> "${base}ень"
                     remainder in 2..4 -> "${base}ня"
-                    else -> base
+                    else -> base + "ней"
                 }
             }
         }
