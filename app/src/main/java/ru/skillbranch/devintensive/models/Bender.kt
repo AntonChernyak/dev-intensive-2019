@@ -30,6 +30,11 @@ class Bender(
             question = question.nextQuestion()
             "Отлично - ты справился\n${question.question}" to status.color
         } else {
+            if (status == Status.CRITICAL) {
+                status = Status.NORMAL
+                question = Question.NAME
+                return "Это неправильный ответ. Давай все по новой\n${question.question}" to status.color
+            }
             status = status.nextStatus()
             "Это неправильный ответ\n${question.question}" to status.color
         }
