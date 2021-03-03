@@ -15,12 +15,23 @@ class Bender(
     }
 
     fun listenAnswer(answer: String): Pair<String, Triple<Int, Int, Int>> {
-        return if (question.answers.contains(answer)) {
+        return /*if (!question.validation(answer)) {
+            val validateString: String = when (question) {
+                Question.NAME -> "Имя должно начинаться с заглавной буквы\n"
+                Question.PROFESSION -> "Профессия должна начинаться со строчной буквы\n"
+                Question.MATERIAL -> "Материал не должен содержать цифр\n"
+                Question.BDAY -> "Год моего рождения должен содержать только цифры\n"
+                Question.SERIAL -> "Серийный номер содержит только цифры, и их 7\n"
+                Question.IDLE -> ""
+            }
+            return "$validateString${question.question}" to status.color
+        }
+        else */if (question.answers.contains(answer)) {
             question = question.nextQuestion()
             "Отлично - это правильный ответ\n${question.question}" to status.color
         } else {
             status = status.nextStatus()
-            "Это не правильный ответ!\n${question.question}" to status.color
+            "Это не правильный ответ\n${question.question}" to status.color
         }
     }
 
@@ -84,7 +95,7 @@ class Bender(
         },
         IDLE("На этом все, вопросов больше нет", listOf()) {
             override fun validation(message: String): Boolean {
-return true
+                return true
             }
 
             override fun nextQuestion(): Question = IDLE
