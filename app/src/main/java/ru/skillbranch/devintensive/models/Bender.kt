@@ -28,10 +28,10 @@ class Bender(
         }
         else */if (question.answers.contains(answer)) {
             question = question.nextQuestion()
-            "Отлично - это правильный ответ\n${question.question}" to status.color
+            "Отлично - ты справился\n${question.question}" to status.color
         } else {
             status = status.nextStatus()
-            "Это не правильный ответ\n${question.question}" to status.color
+            "Это неправильный ответ\n${question.question}" to status.color
         }
     }
 
@@ -39,7 +39,7 @@ class Bender(
         NORMAL(Triple(255, 255, 255)),
         WARNING(Triple(255, 120, 0)),
         DANGER(Triple(255, 60, 60)),
-        CRITICAL(Triple(255, 255, 0));
+        CRITICAL(Triple(255, 0, 0));
 
         fun nextStatus(): Status {
             return if (this.ordinal < values().lastIndex) {
@@ -51,7 +51,7 @@ class Bender(
     }
 
     enum class Question(val question: String, val answers: List<String>) {
-        NAME("Как меня зовут?", listOf("бендер", "bender")) {
+        NAME("Как меня зовут?", listOf("Бендер", "bender")) {
             override fun validation(message: String): Boolean {
                 return message.first().isUpperCase()
             }
@@ -72,7 +72,7 @@ class Bender(
 
             override fun nextQuestion(): Question = BDAY
         },
-        BDAY("Когда меня создали", listOf("2993")) {
+        BDAY("Когда меня создали?", listOf("2993")) {
             override fun validation(message: String): Boolean {
                 for (l in message) {
                     if (!l.isDigit()) return false

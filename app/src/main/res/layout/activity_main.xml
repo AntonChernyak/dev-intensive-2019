@@ -3,18 +3,17 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".MainActivity">
 
     <TextView
             android:id="@+id/tv_text"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:text="Hello World!"
             android:textSize="@dimen/font_large_24"
-            android:gravity="center"
-            android:text="Hello World!"/>
+            android:gravity="center"/>
 
     <ImageView
             android:id="@+id/iv_bender"
@@ -24,7 +23,6 @@
             android:src="@drawable/bender_dance"/>
 
     <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -34,8 +32,8 @@
         <EditText
                 android:id="@+id/et_message"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:lines="1"
                 android:imeOptions="actionDone"
                 android:textColor="@color/color_gray_light"
@@ -45,13 +43,13 @@
                 android:hint="@string/input_text"
                 android:paddingTop="@dimen/spacing_normal_16"
                 android:paddingBottom="@dimen/spacing_normal_16"
-                android:layout_marginStart="@dimen/spacing_normal_16"
-                android:layout_marginEnd="@dimen/spacing_normal_16"/>
+                android:layout_marginLeft="@dimen/spacing_normal_16"
+                android:layout_marginRight="@dimen/spacing_normal_16"/>
 
         <ImageView
                 android:id="@+id/iv_send"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/button_send_size"
+                android:layout_height="@dimen/button_send_size"
                 android:src="@drawable/ic_send_white"
                 android:layout_gravity="center"
                 android:layout_marginRight="@dimen/spacing_normal_16"
