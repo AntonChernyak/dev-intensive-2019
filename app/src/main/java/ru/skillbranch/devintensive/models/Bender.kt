@@ -41,24 +41,57 @@ class Bender(
 
     enum class Question(val question: String, val answers: List<String>) {
         NAME("Как меня зовут?", listOf("бендер", "bender")) {
+            override fun validation(message: String): Boolean {
+                return message.first().isUpperCase()
+            }
+
             override fun nextQuestion(): Question = PROFESSION
         },
         PROFESSION("Назови мою профессию?", listOf("сгибальщик", "bender")) {
+            override fun validation(message: String): Boolean {
+                return message.first().isLowerCase()
+            }
+
             override fun nextQuestion(): Question = MATERIAL
         },
         MATERIAL("Из чего я сделан?", listOf("металл", "дерево", "metal", "iron", "wood")) {
+            override fun validation(message: String): Boolean {
+                return !message.contains("[0-9]".toRegex())
+            }
+
             override fun nextQuestion(): Question = BDAY
         },
         BDAY("Когда меня создали", listOf("2993")) {
+            override fun validation(message: String): Boolean {
+                for (l in message) {
+                    if (!l.isDigit()) return false
+                }
+                return true
+            }
+
             override fun nextQuestion(): Question = SERIAL
         },
         SERIAL("Мой серийный номер?", listOf("2716057")) {
+            override fun validation(message: String): Boolean {
+                if (message.length != 7) return false
+                for (l in message) {
+                    if (!l.isDigit()) return false
+                }
+                return true
+            }
+
             override fun nextQuestion(): Question = IDLE
         },
         IDLE("На этом все, вопросов больше нет", listOf()) {
+            override fun validation(message: String): Boolean {
+return true
+            }
+
             override fun nextQuestion(): Question = IDLE
         };
 
         abstract fun nextQuestion(): Question
+
+        abstract fun validation(message: String): Boolean
     }
 }
