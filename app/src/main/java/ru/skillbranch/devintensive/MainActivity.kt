@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, TextView.OnEdito
     override fun onClick(v: View?) {
         if (v?.id == R.id.iv_send) {
             sendMessage()
+            this@MainActivity.hideKeyboard()
         }
     }
 
@@ -67,7 +68,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, TextView.OnEdito
     override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
             iv_send.performClick()
-            this@MainActivity.hideKeyboard()
             return  true
         }
         return false
