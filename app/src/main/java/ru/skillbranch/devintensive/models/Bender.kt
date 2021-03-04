@@ -1,5 +1,7 @@
 package ru.skillbranch.devintensive.models
 
+import android.util.Log
+
 class Bender(
     var status: Status = Status.NORMAL,
     var question: Question = Question.NAME
@@ -15,7 +17,7 @@ class Bender(
     }
 
     fun listenAnswer(answer: String): Pair<String, Triple<Int, Int, Int>> {
-        return /*if (!question.validation(answer)) {
+        return if (!question.validation(answer)) {
             val validateString: String = when (question) {
                 Question.NAME -> "Имя должно начинаться с заглавной буквы\n"
                 Question.PROFESSION -> "Профессия должна начинаться со строчной буквы\n"
@@ -24,9 +26,10 @@ class Bender(
                 Question.SERIAL -> "Серийный номер содержит только цифры, и их 7\n"
                 Question.IDLE -> ""
             }
-            return "$validateString${question.question}" to status.color
+            "$validateString${question.question}" to status.color
         }
-        else */if (question.answers.contains(answer)) {
+        else if (question==Question.IDLE) return question.question to status.color
+        else if (question.answers.contains(answer)) {
             question = question.nextQuestion()
             "Отлично - ты справился\n${question.question}" to status.color
         } else {
@@ -56,7 +59,7 @@ class Bender(
     }
 
     enum class Question(val question: String, val answers: List<String>) {
-        NAME("Как меня зовут?", listOf("Бендер", "bender")) {
+        NAME("Как меня зовут?", listOf("Бендер", "bender", "Ben")) {
             override fun validation(message: String): Boolean {
                 return message.first().isUpperCase()
             }

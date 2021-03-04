@@ -51,12 +51,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, TextView.OnEdito
         }
     }
 
+    /* Дублируется код */
     private fun sendMessage() {
-        val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString().toLowerCase())
-        messageEt.setText("")
-        val (r, g, b) = color
-        benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
-        textTxt.text = phrase
+        if (benderObj.question == Bender.Question.NAME || benderObj.question == Bender.Question.PROFESSION){
+            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString())
+            messageEt.setText("")
+            val (r, g, b) = color
+            benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
+            textTxt.text = phrase
+        }
+        else {
+            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString().toLowerCase())
+            messageEt.setText("")
+            val (r, g, b) = color
+            benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
+            textTxt.text = phrase
+        }
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

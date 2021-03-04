@@ -50,7 +50,8 @@
                 android:layout_width="@dimen/button_send_size"
                 android:layout_height="@dimen/button_send_size"
                 android:src="@drawable/ic_send_white"
-   
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/spacing_normal_16"
         />
     </LinearLayout>
 
