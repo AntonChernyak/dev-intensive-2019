@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import ru.skillbranch.devintensive.extensions.hideKeyboard
 import ru.skillbranch.devintensive.models.Bender
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, TextView.OnEditorActionListener {
 
     lateinit var benderImage: ImageView
     lateinit var textTxt: TextView
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         textTxt.text = benderObj.askQuestion()
         sendBtn.setOnClickListener(this)
-        //et_message.setOnEditorActionListener(this)
+        et_message.setOnEditorActionListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -64,4 +64,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         outState.putString("QUESTION", benderObj.question.name)
     }
 
+    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            iv_send.performClick()
+            this@MainActivity.hideKeyboard()
+            return  true
+        }
+        return false
+    }
 }

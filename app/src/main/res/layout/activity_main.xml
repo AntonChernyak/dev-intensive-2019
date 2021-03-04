@@ -35,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:lines="1"
+                android:imeOptions="actionDone"
                 android:textColor="@color/color_gray_light"
                 android:textColorHint="@color/color_gray_light"
                 android:maxLines="1"
@@ -42,14 +43,16 @@
                 android:hint="@string/input_text"
                 android:paddingTop="@dimen/spacing_normal_16"
                 android:paddingBottom="@dimen/spacing_normal_16"
-                android:layout_marginLeft="@dimen/spacing_normal_16"
-                android:layout_marginRight="@dimen/spacing_normal_16"/>
+                android:layout_marginStart="@dimen/spacing_normal_16"
+                android:layout_marginEnd="@dimen/spacing_normal_16"/>
 
         <ImageView
                 android:id="@+id/iv_send"
                 android:layout_width="@dimen/button_send_size"
                 android:layout_height="@dimen/button_send_size"
                 android:src="@drawable/ic_send_white"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/spacing_normal_16"
         />
     </LinearLayout>
 
