@@ -1,7 +1,5 @@
 package ru.skillbranch.devintensive.models
 
-import android.util.Log
-
 class Bender(
     var status: Status = Status.NORMAL,
     var question: Question = Question.NAME
@@ -28,7 +26,7 @@ class Bender(
             }
             "$validateString${question.question}" to status.color
         } else if (question == Question.IDLE) return question.question to status.color
-        else if (question.answers.contains(answer)) {
+        else if (question.answers.contains(answer.toLowerCase())) {
             question = question.nextQuestion()
             "Отлично - ты справился\n${question.question}" to status.color
         } else {
@@ -74,14 +72,14 @@ class Bender(
         },
         MATERIAL("Из чего я сделан?", listOf("металл", "дерево", "metal", "iron", "wood")) {
             override fun validation(message: String): Boolean {
-                return message.isNotEmpty() && !message.contains("[0-9]".toRegex())
+                return !message.contains("[0-9]".toRegex())
             }
 
             override fun nextQuestion(): Question = BDAY
         },
         BDAY("Когда меня создали?", listOf("2993")) {
             override fun validation(message: String): Boolean {
-                if (message.isEmpty()) return false
+               // if (message.isEmpty()) return false
                 for (l in message) {
                     if (!l.isDigit()) return false
                 }
