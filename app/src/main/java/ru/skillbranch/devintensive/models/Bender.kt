@@ -27,8 +27,7 @@ class Bender(
                 Question.IDLE -> ""
             }
             "$validateString${question.question}" to status.color
-        }
-        else if (question==Question.IDLE) return question.question to status.color
+        } else if (question == Question.IDLE) return question.question to status.color
         else if (question.answers.contains(answer)) {
             question = question.nextQuestion()
             "Отлично - ты справился\n${question.question}" to status.color
@@ -61,27 +60,28 @@ class Bender(
     enum class Question(val question: String, val answers: List<String>) {
         NAME("Как меня зовут?", listOf("Бендер", "bender")) {
             override fun validation(message: String): Boolean {
-                return message.first().isUpperCase()
+                return message.isNotEmpty() && message.first().isUpperCase()
             }
 
             override fun nextQuestion(): Question = PROFESSION
         },
         PROFESSION("Назови мою профессию?", listOf("сгибальщик", "bender")) {
             override fun validation(message: String): Boolean {
-                return message.first().isLowerCase()
+                return message.isNotEmpty() && message.first().isLowerCase()
             }
 
             override fun nextQuestion(): Question = MATERIAL
         },
         MATERIAL("Из чего я сделан?", listOf("металл", "дерево", "metal", "iron", "wood")) {
             override fun validation(message: String): Boolean {
-                return !message.contains("[0-9]".toRegex())
+                return message.isNotEmpty() && !message.contains("[0-9]".toRegex())
             }
 
             override fun nextQuestion(): Question = BDAY
         },
         BDAY("Когда меня создали?", listOf("2993")) {
             override fun validation(message: String): Boolean {
+                if (message.isEmpty()) return false
                 for (l in message) {
                     if (!l.isDigit()) return false
                 }
@@ -93,6 +93,7 @@ class Bender(
         SERIAL("Мой серийный номер?", listOf("2716057")) {
             override fun validation(message: String): Boolean {
                 if (message.length != 7) return false
+                if (message.isEmpty()) return false
                 for (l in message) {
                     if (!l.isDigit()) return false
                 }
