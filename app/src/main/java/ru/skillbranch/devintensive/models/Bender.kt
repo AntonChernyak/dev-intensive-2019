@@ -17,7 +17,7 @@ class Bender(
     }
 
     fun listenAnswer(answer: String): Pair<String, Triple<Int, Int, Int>> {
-        return /*if (!question.validation(answer)) {
+        return if (!question.validation(answer)) {
             val validateString: String = when (question) {
                 Question.NAME -> "Имя должно начинаться с заглавной буквы\n"
                 Question.PROFESSION -> "Профессия должна начинаться со строчной буквы\n"
@@ -29,7 +29,7 @@ class Bender(
             "$validateString${question.question}" to status.color
         }
         else if (question==Question.IDLE) return question.question to status.color
-        else*/ if (question.answers.contains(answer)) {
+        else if (question.answers.contains(answer)) {
             question = question.nextQuestion()
             "Отлично - ты справился\n${question.question}" to status.color
         } else {
