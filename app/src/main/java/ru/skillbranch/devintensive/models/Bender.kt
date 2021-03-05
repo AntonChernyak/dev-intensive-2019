@@ -59,7 +59,7 @@ class Bender(
     }
 
     enum class Question(val question: String, val answers: List<String>) {
-        NAME("Как меня зовут?", listOf("Бендер", "bender", "Ben")) {
+        NAME("Как меня зовут?", listOf("Бендер", "bender")) {
             override fun validation(message: String): Boolean {
                 return message.first().isUpperCase()
             }
