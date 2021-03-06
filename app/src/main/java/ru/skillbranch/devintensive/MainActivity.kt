@@ -52,11 +52,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, TextView.OnEdito
     }
 
     private fun sendMessage() {
-            val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString().trim())
-            messageEt.setText("")
-            val (r, g, b) = color
-            benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
-            textTxt.text = phrase
+        val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString().trim())
+        messageEt.setText("")
+        val (r, g, b) = color
+        benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
+        textTxt.text = phrase
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, TextView.OnEdito
     override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
         if (actionId == EditorInfo.IME_ACTION_DONE) {
             iv_send.performClick()
-            return  true
+            return true
         }
         return false
     }

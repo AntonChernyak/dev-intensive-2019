@@ -51,8 +51,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/ic_send_white"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/spacing_normal_16"
+
         />
     </LinearLayout>
 
